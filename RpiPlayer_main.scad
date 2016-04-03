@@ -52,6 +52,14 @@ module TopScrew() {
     cylinder(h=top_screw_h+1, r=2.8, center=true);
     }
 } 
+module side_ring() {
+    
+       difference() {
+    cylinder(h=3, r=4, center=true);
+    cylinder(h=3+1, r=2.5, center=true);
+           translate([-3, 0,0]) cube([2,2, 5], center=true);
+    } 
+} 
 
 module RpiPlayer_Main() {
     difference () {
@@ -83,7 +91,7 @@ module RpiPlayer_Main() {
 
 
 
-translate([hdmi_x_pos, -all_y/2-0.1,-(all_z/2 - hdmi_z_pos-hdmi_look_y-5)]) scale([1.5,0.6,1.0]) LetterBlock("HDMI","Liberation Mono", 2);
+translate([hdmi_x_pos, -all_y/2-0.1,-(all_z/2 - hdmi_z_pos-hdmi_look_y-7)]) scale([1.5,0.6,1.0]) LetterBlock("HDMI","Liberation Mono", 2);
 translate([usb_x_pos, -all_y/2-0.1,-(all_z/2 - usb_z_pos-usb_look_y+2)]) LetterBlock("\uf011","FontAwesome", 3);
 
 
@@ -97,6 +105,12 @@ translate([out_x/2, out_y/2, (all_z-top_screw_h)/2]) TopScrew();
 translate([-out_x/2, -out_y/2, (all_z-top_screw_h)/2]) TopScrew();
 translate([out_x/2, -out_y/2, (all_z-top_screw_h)/2]) TopScrew();
 translate([-out_x/2, out_y/2, (all_z-top_screw_h)/2]) TopScrew();
+translate([-all_x/2-2.4, -all_y/2+8, all_z/2-3]) side_ring();
+translate([-all_x/2-2.4, -all_y/2+8, all_z/2-10]) side_ring();
+
+translate([25, -all_y/2-3, all_z/2-3]) rotate([0,0,90]) side_ring();
+translate([25, -all_y/2-3, all_z/2-10]) rotate([0,0,90]) side_ring();
+
 
 
 

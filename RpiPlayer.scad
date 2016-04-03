@@ -28,13 +28,13 @@ gb_sy=6;
 top_z=bottom_h;
 
 
-hdmi_look_x = 16;
-hdmi_look_y = 7;
+hdmi_look_x = 12;
+hdmi_look_y = 3;
 hdmi_x_pos = -(out_x/2 - 32);
 hdmi_z_pos = all_z/2 - bottom_h - 11.5;
 
 
-usb_look_x = 10;
+usb_look_x = 8;
 usb_look_y = 4;
 usb_x_pos  = -(out_x/2 - 10.6);
 usb_z_pos = all_z/2 - bottom_h - 7;
@@ -58,7 +58,7 @@ uart_z_pos = (all_z/2 - bottom_h - 3 );
 rca1_x_pos  = -(out_x/2 - 15);
 rca_z_pos = (all_z/2 - bottom_h - 27 );
 
-rca2_x_pos  = -(out_x/2 - 34);
+rca2_x_pos  = -(out_x/2 - 35);
 
 top_screw_h=8;
 
