@@ -42,6 +42,17 @@ module UART_port() {
     cube([uart_x, uart_y, uart_z], center=true);
 }
 
+module RCA_port() {
+    rotate([0,90,90]) color([0.5, 0.3, 0.1])
+    cylinder(h=bottom_h+0.1, r=12/2, center=true);
+}
+module TopScrew() {
+    difference() {
+    cylinder(h=top_screw_h, r=4, center=true);
+    cylinder(h=top_screw_h+1, r=2.8, center=true);
+    }
+} 
+
 module RpiPlayer_Main() {
     difference () {
     round_cube(out_x,out_y,all_z,all_r);
@@ -49,23 +60,44 @@ module RpiPlayer_Main() {
     translate([0,0,bottom_h]) round_cube(out_x-2*lr_width,out_y-2*f_width,all_z,all_r);
     translate([hdmi_x_pos, -(all_y - f_width)/2, -hdmi_z_pos])        hdmi_port();
     translate([usb_x_pos, -(all_y - f_width)/2, -usb_z_pos])        microusb_port();
-    translate([(all_x - f_width)/2,0,0])        side_port();
-    color([1.0,0,0]) translate([-uart_x_pos, (all_y-uart_y)/2+0.1, -(all_z/6)]) UART_port();
+    translate([(all_x - f_width)/2,0,-side_z_pos])        side_port();
+    color([1.0,0,0]) translate([-uart_x_pos, (all_y-uart_y)/2+0.1, -(uart_z_pos)]) UART_port();
         
+    translate([-(out_x/2-3.5), -b_screw_y, -(all_z/2-bottom_h/2)]) cylinder(h=bottom_h+1, r=3, center=true);
+    translate([58-(out_x/2-3.5), -b_screw_y, -(all_z/2-bottom_h/2)]) cylinder(h=bottom_h+1, r=3, center=true);
+    translate([58-(out_x/2-3.5), b_screw_y, -(all_z/2-bottom_h/2)]) cylinder(h=bottom_h+1, r=3, center=true);
+    translate([-(out_x/2-3.5), b_screw_y, -(all_z/2-bottom_h/2)]) cylinder(h=bottom_h+1, r=3, center=true);
+
+    translate([rca1_x_pos, -(all_y - f_width)/2, -rca_z_pos])        RCA_port();
+    translate([rca2_x_pos, -(all_y - f_width)/2, -rca_z_pos])        RCA_port();
+
+    translate([out_x/2, out_y/2, (all_z-top_screw_h)/2]) cylinder(h=top_screw_h+1, r=3, center=true);
+     translate([out_x/2, -out_y/2, (all_z-top_screw_h)/2]) cylinder(h=top_screw_h+1, r=3, center=true);
+    translate([-out_x/2, out_y/2, (all_z-top_screw_h)/2]) cylinder(h=top_screw_h+1, r=3, center=true);
+    translate([-out_x/2, -out_y/2, (all_z-top_screw_h)/2]) cylinder(h=top_screw_h+1, r=3, center=true);
+
+
     }
     
 }
 
 
 
-translate([hdmi_x_pos, -all_y/2-0.1,hdmi_z_pos/2]) scale([1.5,0.6,1.0]) LetterBlock("HDMI","Liberation Mono", 2);
-translate([usb_x_pos, -all_y/2-0.1,usb_z_pos/2-1]) LetterBlock("\uf011","FontAwesome", 3);
+translate([hdmi_x_pos, -all_y/2-0.1,-(all_z/2 - hdmi_z_pos-hdmi_look_y-5)]) scale([1.5,0.6,1.0]) LetterBlock("HDMI","Liberation Mono", 2);
+translate([usb_x_pos, -all_y/2-0.1,-(all_z/2 - usb_z_pos-usb_look_y+2)]) LetterBlock("\uf011","FontAwesome", 3);
 
 
 RpiPlayer_Main();
 
-color([1.0,0,0]) translate([-uart_x_pos, (all_y-uart_y)/2-0.1, -(all_z/6+uart_z)]) UART_port();
-translate([-uart_x_pos, (all_y)/2-0.1, -(all_z/6-uart_z)]) rotate([0,0,180]) LetterBlock("GND RX DX VCC","Liberation Mono", 1);
+color([1,0,0,0]) translate([-uart_x_pos, (all_y-uart_y)/2-0.1, -(uart_z_pos+uart_z)]) UART_port();
+translate([-uart_x_pos, (all_y)/2-0.1, -(uart_z_pos-2)]) rotate([0,0,180]) LetterBlock("GND RX DX VCC","Liberation Mono", 1);
+
+
+translate([out_x/2, out_y/2, (all_z-top_screw_h)/2]) TopScrew();
+translate([-out_x/2, -out_y/2, (all_z-top_screw_h)/2]) TopScrew();
+translate([out_x/2, -out_y/2, (all_z-top_screw_h)/2]) TopScrew();
+translate([-out_x/2, out_y/2, (all_z-top_screw_h)/2]) TopScrew();
+
 
 
 
