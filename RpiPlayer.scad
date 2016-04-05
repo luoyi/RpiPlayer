@@ -1,4 +1,4 @@
-$fn=100;
+$fn=50;
 
 out_x=86;
 out_y=75;
@@ -29,7 +29,7 @@ top_z=bottom_h;
 
 
 hdmi_look_x = 12;
-hdmi_look_y = 3;
+hdmi_look_y = 5;
 hdmi_x_pos = -(out_x/2 - 32);
 hdmi_z_pos = all_z/2 - bottom_h - 11.5;
 
@@ -41,17 +41,17 @@ usb_z_pos = all_z/2 - bottom_h - 7;
 
 
 
-side_look_x = 55;
-side_look_y = 20;
+side_look_x = 51;
+side_look_y = 16;
 side_z_pos = (all_z/2 - bottom_h - 15 );
 
 
-uart_x=10;
-uart_y=5;
-uart_z=2;
+uart_x=17;
+uart_y=bottom_h+1;
+uart_z=4;
     
 uart_x_pos = 20;
-uart_z_pos = (all_z/2 - bottom_h - 3 );
+uart_z_pos = (all_z/2 - bottom_h-uart_z/2);
 
 
 

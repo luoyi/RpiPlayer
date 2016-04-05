@@ -2,35 +2,76 @@ include <RpiPlayer.scad>
 
 
 
-module RpiPlayer_Main() {
-    difference () {
-    round_cube(out_x,out_y,all_z,all_r);    
-    translate([0,(f_width-b_width)/2,bottom_h]) round_cube(out_x-2*lr_width,out_y-f_width-b_width,all_z,all_r);
-    color([1,0,0])    
-    translate([0, (out_y - b_width)/2 + all_r, 2])
-    gong_bang(gb_x, gb_sx, gb_mw, gb_sy, all_z);
-    translate([0, out_y/2, bottom_h])    
-        cube([gb_x-gb_sx-4, out_y, all_z], center=true);
-    }
+lcd_x = 73;
+lcd_y = 44;
+
+lcd_screw = 6;
+lcd_sx = (lcd_x - lcd_screw)/2;
+lcd_sy = (lcd_y - lcd_screw)/2;
+
+
+module RpiPlayer_Top() {
+    
+    difference() {
+    round_cube(out_x,out_y,bottom_h,all_r);
+    translate([out_x/2, out_y/2, 0]) cylinder(h=bottom_h+1, d=2.1, center=true);
+     translate([out_x/2, -out_y/2, 0]) cylinder(h=bottom_h+1, d=2.1, center=true);
+    translate([-out_x/2, out_y/2, 0]) cylinder(h=bottom_h+1, d=2.1, center=true);
+    translate([-out_x/2, -out_y/2, 0]) cylinder(h=bottom_h+1, d=2.1, center=true);
+        cube([73, 44, bottom_h+1], center=true);
+        
+    translate([-25, (out_y/2-bottom_h), 0] )   cube([10,4,bottom_h+1], center=true);
+        
+        for (x=[-35:5:35]) {
+            translate([x, -26, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+            translate([x, -32, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+            
+            if ( x < -10 || x > 10 ) {
+                translate([x, -39, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+                  translate([x, 39, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+              
+            }
+
+
+            translate([x, 26, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+            if ( x != -30 && x != -25 && x != -20 ) 
+            translate([x, 32, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+
+
+        }
+    }    
+
 }
 
 
-//union() {
-//round_cube(out_x,out_y,top_z,bottom_h);   
-translate([-100, 0,all_z])
-union() {
-round_cube(out_x,out_y,bottom_h,all_r);        
-    translate([0,0,bottom_h])
-    difference() {
-color([1,0,0])        
-translate([0,(f_width-b_width)/2,0]) round_cube(out_x-2*lr_width,out_y-f_width-b_width,bottom_h,all_r);    
-translate([0,(f_width-b_width)/2,1]) round_cube(out_x-4*lr_width,out_y-f_width-b_width-4,bottom_h,all_r);            }
-color([0,0,1])
-translate([0, (out_y - b_width)/2 + all_r, all_z/2-1])
-gong_bang(gb_x, gb_sx, gb_mw, gb_sy, all_z);
-//color([0,1,0])         
-//translate([0,(f_width-b_width)/2,-(top_z)]) round_cube(out_x-4*lr_width,out_y-f_width-b_width-10,bottom_h+1,all_r);            
-    }
-//}
 
+RpiPlayer_Top();
+
+color([1.0, 0,0]){
+translate([lcd_sx, lcd_sy, -1.5/2]) cube([lcd_screw, lcd_screw, 1.5], center=true);
+translate([lcd_sx, -lcd_sy, -1.5/2]) cube([lcd_screw, lcd_screw, 1.5], center=true);
+
+translate([-lcd_sx, -lcd_sy, -1.5/2]) cube([lcd_screw, lcd_screw, 1.5], center=true);
+
+translate([-lcd_sx, lcd_sy, -1.5/2]) cube([lcd_screw, lcd_screw, 1.5], center=true);
+    
+translate([-25,(out_y/2-bottom_h)-2-1, -6/2+0.2]) cube([10, 2, 6], center=true);
+    
+
+top_side_x = all_x/2 - bottom_h - 2/2-1.5;
+top_side_y = all_y/2 - bottom_h - 2/2-1.5;
+    
+translate([top_side_x,0,-3]) rotate([0,0,90]) cube([20, 2, 3], center=true);
+translate([-top_side_x,0,-3]) rotate([0,0,90]) cube([20, 2, 3], center=true);
+    
+translate([0,-top_side_y,-3])  cube([20, 2, 3], center=true);
+translate([0,top_side_y,-3])  cube([20, 2, 3], center=true);
+    
+    
+
+
+
+
+
+}
 
