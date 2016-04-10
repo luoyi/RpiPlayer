@@ -5,7 +5,7 @@ include <RpiPlayer.scad>
 lcd_x = 73;
 lcd_y = 44;
 
-lcd_screw = 6;
+lcd_screw = 8;
 lcd_sx = (lcd_x - lcd_screw)/2;
 lcd_sy = (lcd_y - lcd_screw)/2;
 
@@ -28,7 +28,7 @@ module RpiPlayer_Top() {
             
             if ( x < -10 || x > 10 ) {
                 translate([x, -39, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
-                  translate([x, 39, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
+            //      translate([x, 39, 0] )  cylinder(h=bottom_h+1, r=1.5, center=true);
               
             }
 
