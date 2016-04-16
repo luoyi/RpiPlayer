@@ -38,16 +38,13 @@ gb_sy=6;
 top_z=bottom_h;
 
 
-hdmi_look_x = 21;
-hdmi_look_y = 10;
-hdmi_x_pos = -(pi_x/2 - 32);
-hdmi_z_pos = all_z/2 - bottom_h - 10;
+
 
 
 usb_look_x = 8;
 usb_look_y = 4;
 usb_x_pos  = -(pi_x/2 - 10.6);
-usb_z_pos = all_z/2 - bottom_h - 7;
+usb_z_pos = all_z/2 - bottom_h - 7 -2;
 
 
 

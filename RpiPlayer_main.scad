@@ -22,6 +22,20 @@ module hdmi_port() {
     round_cube(hdmi_x, hdmi_y, f_width+0.1, 2);
 }
 
+hdmi_look_x = 21;
+hdmi_look_y = 8;
+hdmi_x_pos = -(pi_x/2 - 32);
+hdmi_z_pos = all_z/2 - bottom_h - 10 - 1;
+
+
+rca_z_pos = (all_z/2 - bottom_h - 26-1.5);
+
+rca1_x_pos  = -(pi_x/2-(8+15/2));
+rca2_x_pos  = -(pi_x/2-(43-15/2));
+rca1_x_pos  = -(all_x/2-22);
+rca2_x_pos  = -(all_x/2-42);
+
+
 module microusb_port() {
     usb_x = usb_look_y;
     usb_y = usb_look_x;
@@ -123,7 +137,7 @@ RpiPlayer_Main();
 
 
 
-
+/*
 
 translate([out_x/2, out_y/2, (all_z-top_screw_h)/2]) TopScrew();
 translate([-out_x/2, -out_y/2, (all_z-top_screw_h)/2]) TopScrew();
@@ -135,9 +149,7 @@ translate([-all_x/2-2.4, -all_y/2+8, all_z/2-10]) side_ring();
 translate([25, -all_y/2-3, all_z/2-3]) rotate([0,0,90]) side_ring();
 translate([25, -all_y/2-3, all_z/2-10]) rotate([0,0,90]) side_ring();
 
-     
+  */   
 
-
-//color([1.0,0.0, 0]) translate([-uart_x_pos, (out_y-6)/2+1.2, -(uart_z_pos)-uart_y/2-1]) cube([uart_x, 6, 2], center=true);
 
     
